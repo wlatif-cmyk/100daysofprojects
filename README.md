@@ -1,4 +1,4 @@
-\# 100 Days of Projects — TikTok Series 
+100 Days of Projects — TikTok Series 
 
 
 
@@ -6,7 +6,7 @@ https://www.tiktok.com/@yappingaddiction
 
 
 
-Welcome to my \*\*100-day challenge\*\*!  
+Welcome to my 100-day challenge!  
 
 Every day, I build something small, fun, or weird — and post it on TikTok.  
 
@@ -22,23 +22,23 @@ Follow along as this slowly turns into a chaotic but glorious archive of experim
 
 
 
-\## 📆 Daily Projects
+📆 Daily Projects
 
 
 
-\### \*\*Day 1 — Traffic light system\*\*
+Day 1 — Traffic light system
 
 
 
-\### \*\*Day 2 — Light meter that runs off of ultrasonic sensor\*\*
+Day 2 — Light meter that runs off of ultrasonic sensor
 
 
 
-\### \*\*Day 3 — Ball game with LCD Module\*\*
+Day 3 — Ball game with LCD Module
 
 
 
-\### \*\*Day 4 — Fan Motion Detection 
+Day 4 — Fan Motion Detection 
 
 
 
