@@ -42,11 +42,11 @@ Day 4 — Fan Motion Detection
 
 
 
-Day 5- LED colour changer
+Day 5 — LED colour changer
 
 
 
-Day 6 - Anti-procrastination tool
+Day 6 — Anti-procrastination tool
 
 
 
