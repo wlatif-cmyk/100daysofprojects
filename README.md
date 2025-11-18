@@ -50,4 +50,5 @@ Day 6 — Anti-procrastination tool
 
 
 
+Day 7 - Anti-procrastination tool major improvements - added timer, timer reset button, and improved screen contrasting
 
