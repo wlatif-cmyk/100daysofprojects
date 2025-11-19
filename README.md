@@ -50,5 +50,9 @@ Day 6 — Anti-procrastination tool
 
 
 
-Day 7 - Anti-procrastination tool major improvements - added timer, timer reset button, and improved screen contrasting
+Day 7 — Anti-procrastination tool major improvements - added timer, timer reset button, and improved screen contrasting
+
+
+
+Day 8 — LED Night light
 
