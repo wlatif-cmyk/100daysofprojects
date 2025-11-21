@@ -56,3 +56,14 @@ Day 7 — Anti-procrastination tool major improvements - added timer, timer rese
 
 Day 8 — LED Night light
 
+
+
+Day 9 — Button piano
+
+
+
+Day 10 — Improvements to LED night light - added alarm system
+
+
+
+Day 11 - Clothing temperature/humidity sensor
