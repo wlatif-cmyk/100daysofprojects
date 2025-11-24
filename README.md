@@ -66,4 +66,12 @@ Day 10 — Improvements to LED night light - added alarm system
 
 
 
-Day 11 - Clothing temperature/humidity sensor
+Day 11 — Clothing temperature/humidity sensor
+
+
+
+Day 12 — Arduino project generator
+
+
+
+Day 13 — Servo motor joystick control
