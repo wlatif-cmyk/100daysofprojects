@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Arduino Project Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1 class="brand">Advanced Project Generator</h1>
+    </header>
+
+    <main>
+      <section class="hat-scene">
+        <div id="projectCard" class="card peek" role="status" aria-live="polite">
+          <h2 id="projectTitle"><span class="titleText">Ready?</span></h2>
+          <p id="projectDesc">Click "Pull project" to reveal your next Arduino challenge.</p>
+          <div class="meta"><span id="projectDifficulty"></span></div>
+        </div>
+      </section>
+
+      <div class="controls">
+        <button id="pullBtn" class="primary">Pull project</button>
+        <button id="resetBtn" class="secondary">Reset</button>
+  <div class="level">Difficulty: <strong id="difficultyLevel" class="difficulty-number">1</strong>/10</div>
+      </div>
+    </main>
+
+    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+:root{
+  /* Black & white theme with a yellow brand accent */
+  --bg-1: #000000;
+  --bg-2: #0a0a0a;
+  --card: #ffffff; /* white cards */
+  --muted:#6b6b6b; /* muted greys for secondary text */
+  --accent:#000000; /* primary accent (black) */
+  --accent-2:#f6c02d; /* brand yellow for the title */
+  --shadow: 0 14px 40px rgba(2,2,2,0.6);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+.body-font{font-family:Inter,Segoe UI,Roboto,system-ui,-apple-system,"Helvetica Neue",Arial}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Roboto,system-ui,-apple-system,"Helvetica Neue",Arial;
+  background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+  color:var(--accent);
+  display:flex;
+  align-items:center; /* center vertically for big layout */
+  justify-content:center;
+  padding:12px;
+  min-height:100vh;
+}
+.app{width:96vw;max-width:1400px;min-height:90vh}
+.header{text-align:center;margin-bottom:8px}
+/* Fancy cursive, Apple-like brand header with subtle glass */
+.brand{margin:0;font-size:44px;letter-spacing:-0.02em;font-weight:500}
+.brand{font-family: 'Apple Chancery','Snell Roundhand','Segoe Script','Segoe UI', 'Helvetica Neue', Arial, cursive}
+.brand{color:var(--accent-2);/* remove box around title */padding:0;border-radius:0;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+
+.hat-scene{position:relative;height:84%;display:flex;align-items:center;justify-content:center}
+.hat{position:relative;z-index:1}
+.hat-svg{width:360px;height:auto;display:block}
+
+.card{position:relative;bottom:0;width:90%;max-width:980px;padding:28px;background:transparent;box-shadow:none;border-radius:0;transform:translateY(8%);opacity:1;display:flex;flex-direction:column;align-items:flex-start;gap:12px;z-index:3;border:none}
+.card h2{margin:0;font-size:34px;color:var(--accent-2)}
+.card p{margin:0;color:#d1d1d1;font-size:18px}
+.card .meta{margin-top:8px;color:#bdbdbd;font-size:16px}
+
+.controls{display:flex;align-items:center;gap:20px;justify-content:center;margin-top:28px}
+.primary{background:#ffffff;color:#000;border:0;padding:18px 28px;border-radius:14px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.35);font-size:22px;font-weight:600}
+.secondary{background:transparent;color:#ffffff;border:1px solid rgba(255,255,255,0.12);padding:14px 22px;border-radius:14px;cursor:pointer;font-size:18px;font-weight:600}
+.level{color:var(--muted);font-size:22px;font-weight:700}
+
+.difficulty-number{font-size:28px;margin-left:8px}
+
+/* Emergence animation: looks like idea rising out of the hat */
+.card.emerge{animation:emergeFromHat 900ms cubic-bezier(.18,.9,.24,1) forwards}
+.card.peek{transform:translateY(12%);opacity:0.92}
+
+@keyframes emergeFromHat{
+  0%{transform:translateY(50%) scale(0.96);opacity:0}
+  55%{transform:translateY(-12%) scale(1.03);opacity:1}
+  100%{transform:translateY(-8%) scale(1);opacity:1}
+}
+
+/* little idea pop animation for the title */
+.idea-burst{display:inline-block;transform-origin:center;animation:ideaPop 900ms ease-out}
+@keyframes ideaPop{
+  0%{transform:translateY(6px) scale(0.95);opacity:0}
+  60%{transform:translateY(-6px) scale(1.08);opacity:1}
+  100%{transform:translateY(0) scale(1)}
+}
+/* idea icon removed; no emoji styling needed */
+
+@media (max-width:900px){
+  .app{padding-top:12px}
+  .brand{font-size:28px}
+  .card h2{font-size:28px}
+  .primary{font-size:18px;padding:14px 20px}
+}
+
+@media (max-width:640px){
+  .card{width:94%;padding:16px;max-width:420px}
+  .hat-svg{display:none}
+  .brand{font-size:24px}
+}
+
+/* small confetti canvas overlay */
+#confettiCanvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:999}
