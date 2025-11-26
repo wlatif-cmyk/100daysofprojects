@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foresty Budgeting Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --evergreen: #0b3d2e;
+        --pine: #125c34;
+        --sage: #5f8d4e;
+        --fern: #88b04b;
+        --mist: #d9ead3;
+        --moss: #1f4e3d;
+        --bark: #2d1e18;
+        --glow: rgba(255, 255, 255, 0.2);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background: radial-gradient(circle at 20% 15%, #2c6449 0%, #0d261c 45%, #030806 100%);
+        color: var(--mist);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 2.5rem;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 80% -10%, rgba(255, 255, 255, 0.18), transparent 45%);
+        pointer-events: none;
+      }
+
+      body::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+        background-size: 120px 120px;
+        mix-blend-mode: screen;
+        opacity: 0.35;
+        pointer-events: none;
+      }
+
+      .tree-line {
+        position: absolute;
+        bottom: 0;
+        left: -5%;
+        width: 110%;
+        height: 200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        z-index: 0;
+        opacity: 0.45;
+      }
+
+      .tree {
+        width: 0;
+        height: 0;
+        border-left: 35px solid transparent;
+        border-right: 35px solid transparent;
+        border-bottom: 120px solid rgba(13, 58, 42, 0.9);
+        position: relative;
+      }
+
+      .tree::after {
+        content: "";
+        position: absolute;
+        left: -25px;
+        top: -70px;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 80px solid rgba(17, 82, 56, 0.7);
+      }
+
+      .tree::before {
+        content: "";
+        position: absolute;
+        left: -15px;
+        top: -120px;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 60px solid rgba(48, 120, 82, 0.6);
+      }
+
+      .dashboard {
+        width: min(1150px, 100%);
+        padding: 2rem 0 4rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .title {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: var(--mist);
+      }
+
+      .subtitle {
+        color: #c8d9c4;
+        font-weight: 500;
+        opacity: 0.85;
+      }
+
+      .badge {
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid var(--fern);
+        color: var(--fern);
+        font-size: 0.9rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .budget-control {
+        margin-top: 2.5rem;
+        padding: 1.5rem 2rem;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(6, 18, 13, 0.35);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(16px);
+      }
+
+      .budget-control h2 {
+        font-size: 1.4rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .budget-field {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        align-items: center;
+      }
+
+      .budget-field input {
+        width: 180px;
+      }
+
+      .budget-field button {
+        margin-top: 0;
+      }
+
+      .card {
+        background: linear-gradient(145deg, rgba(16, 56, 39, 0.55), rgba(7, 26, 19, 0.35));
+        border-radius: 24px;
+        border: 1px solid rgba(143, 191, 124, 0.25);
+        padding: 1.5rem;
+        box-shadow: 0 18px 40px rgba(5, 18, 13, 0.35);
+        backdrop-filter: blur(18px);
+      }
+
+      .card h3 {
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9db49c;
+        margin-bottom: 0.65rem;
+      }
+
+      .card .amount {
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: var(--fern);
+      }
+
+      .progress-track {
+        margin-top: 1rem;
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      }
+
+      .progress-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #7ad08c, #a2ffcb);
+        transition: width 0.4s ease;
+      }
+
+      .flow-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
+        gap: 2rem;
+        margin-top: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 1.3rem;
+        color: var(--mist);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(4, 15, 11, 0.35);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(12px);
+      }
+
+      thead {
+        color: #a8c0aa;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      th,
+      td {
+        padding: 0.9rem;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      tbody tr {
+        transition: background 0.2s ease;
+      }
+
+      tbody tr:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .category-pill {
+        padding: 0.2rem 0.8rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        background: rgba(136, 176, 75, 0.15);
+        border: 1px solid rgba(136, 176, 75, 0.35);
+      }
+
+      form {
+        display: grid;
+        gap: 1rem;
+        margin-top: 0.5rem;
+        background: rgba(4, 15, 11, 0.35);
+        padding: 1.5rem;
+        border-radius: 24px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(12px);
+      }
+
+      label {
+        font-size: 0.85rem;
+        color: #b4c8b8;
+        letter-spacing: 0.05em;
+      }
+
+      input,
+      select {
+        width: 100%;
+        background: rgba(2, 8, 6, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        padding: 0.9rem 1rem;
+        color: var(--mist);
+        font-size: 1rem;
+        transition: border 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--fern);
+        background: rgba(34, 84, 57, 0.65);
+      }
+
+      button {
+        padding: 0.95rem 1.2rem;
+        border-radius: 16px;
+        background: linear-gradient(120deg, rgba(136, 176, 75, 0.95), rgba(95, 141, 78, 0.9));
+        border: none;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #06130d;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        margin-top: 0.5rem;
+        box-shadow: 0 18px 35px rgba(136, 176, 75, 0.35);
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 30px rgba(136, 176, 75, 0.45);
+      }
+
+      .ghost-btn {
+        background: rgba(8, 26, 19, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--mist);
+        padding: 0.7rem 1.1rem;
+        border-radius: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease, border-color 0.2s ease;
+      }
+
+      .ghost-btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+
+      .flow-chart {
+        margin-top: 3rem;
+        padding: 2rem;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(140deg, rgba(19, 57, 42, 0.3), rgba(4, 15, 11, 0.25));
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(16px);
+      }
+
+      .flow-chart h2 {
+        margin-bottom: 1.2rem;
+        font-size: 1.3rem;
+      }
+
+      canvas {
+        width: 100% !important;
+        height: 280px !important;
+      }
+
+      @media (max-width: 900px) {
+        .flow-layout {
+          grid-template-columns: 1fr;
+        }
+
+        body {
+          padding: 1.2rem;
+        }
+
+        .dashboard {
+          padding: 1.5rem 0 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="dashboard">
+      <header>
+        <div>
+          <p class="badge">Day 27 • Evergreen Series</p>
+          <h1 class="title">Budgeting Canopy</h1>
+          <p class="subtitle">Track your spending with a calming forest vibe.</p>
+        </div>
+        <div>
+          <p class="subtitle">Last synced: <span id="last-sync">just now</span></p>
+        </div>
+      </header>
+
+      <section class="cards">
+        <article class="card">
+          <h3>Total Budget</h3>
+          <p class="amount" id="budget-total">$4,500</p>
+          <div class="progress-track">
+            <div class="progress-fill" id="budget-progress" style="width: 100%"></div>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Spent</h3>
+          <p class="amount" id="budget-spent">$0</p>
+          <div class="progress-track">
+            <div class="progress-fill" id="spent-progress" style="width: 0%"></div>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Remaining</h3>
+          <p class="amount" id="budget-remaining">$0</p>
+          <div class="progress-track">
+            <div class="progress-fill" id="remaining-progress" style="width: 100%"></div>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Savings Rate</h3>
+          <p class="amount" id="savings-rate">0%</p>
+          <p class="subtitle">Goal: 35%</p>
+        </article>
+      </section>
+
+      <section class="budget-control">
+        <div>
+          <p class="subtitle">Tune your canopy goal</p>
+          <h2>Set overall monthly budget</h2>
+        </div>
+        <form id="budget-form">
+          <label for="budget-input">Total budget ($)</label>
+          <div class="budget-field">
+            <input id="budget-input" type="number" min="0" step="50" />
+            <button type="submit">Update Budget</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="flow-layout">
+        <article>
+          <div class="section-header">
+            <h2 class="section-title">Recent Transactions</h2>
+            <button type="button" class="ghost-btn" id="clear-transactions">Clear Recent</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="transaction-body"></tbody>
+          </table>
+        </article>
+
+        <article>
+          <h2 class="section-title">Add Transaction</h2>
+          <form id="transaction-form">
+            <div>
+              <label for="description">Description</label>
+              <input id="description" type="text" required placeholder="Farmer's market" />
+            </div>
+            <div>
+              <label for="category">Category</label>
+              <select id="category" required>
+                <option value="Food">Food</option>
+                <option value="Housing">Housing</option>
+                <option value="Transport">Transport</option>
+                <option value="Wellness">Wellness</option>
+                <option value="Leisure">Leisure</option>
+                <option value="Utilities">Utilities</option>
+              </select>
+            </div>
+            <div>
+              <label for="amount">Amount ($)</label>
+              <input id="amount" type="number" min="0" step="0.01" required />
+            </div>
+            <button type="submit">Add to Ledger</button>
+          </form>
+        </article>
+      </section>
+
+      <section class="flow-chart">
+        <h2>Monthly Flow</h2>
+        <canvas id="trend-chart"></canvas>
+      </section>
+    </main>
+    <div class="tree-line" aria-hidden="true">
+      <span class="tree"></span>
+      <span class="tree" style="transform: scale(0.8) translateY(20px)"></span>
+      <span class="tree" style="transform: scale(1.2) translateY(-15px)"></span>
+      <span class="tree" style="transform: scale(0.9) translateY(10px)"></span>
+      <span class="tree" style="transform: scale(1.1) translateY(-5px)"></span>
+      <span class="tree" style="transform: scale(0.85) translateY(25px)"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const state = {
+        budget: 4500,
+        transactions: [
+          { description: "Cozy cabin rent", category: "Housing", amount: 1850, date: "Nov 5" },
+          { description: "Weekly groceries", category: "Food", amount: 215, date: "Nov 9" },
+          { description: "Trailhead coffee", category: "Leisure", amount: 34, date: "Nov 11" },
+          { description: "Yoga membership", category: "Wellness", amount: 75, date: "Nov 15" },
+          { description: "EV charge pass", category: "Transport", amount: 45, date: "Nov 18" }
+        ]
+      };
+
+      const transactionBody = document.getElementById("transaction-body");
+      const budgetTotalEl = document.getElementById("budget-total");
+      const budgetSpentEl = document.getElementById("budget-spent");
+      const budgetRemainingEl = document.getElementById("budget-remaining");
+      const savingsRateEl = document.getElementById("savings-rate");
+      const spentProgress = document.getElementById("spent-progress");
+      const remainingProgress = document.getElementById("remaining-progress");
+      const clearButton = document.getElementById("clear-transactions");
+      const budgetForm = document.getElementById("budget-form");
+      const budgetInput = document.getElementById("budget-input");
+
+      const formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0
+      });
+
+      const preciseFormatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+      });
+
+      const renderTransactions = () => {
+        transactionBody.innerHTML = state.transactions
+          .map(
+            (tx) => `
+          <tr>
+            <td>${tx.description}</td>
+            <td><span class="category-pill">${tx.category}</span></td>
+            <td>${preciseFormatter.format(tx.amount)}</td>
+            <td>${tx.date}</td>
+          </tr>
+        `
+          )
+          .join("");
+      };
+
+      const updateBudget = () => {
+        const spent = state.transactions.reduce((sum, tx) => sum + tx.amount, 0);
+        const remaining = Math.max(state.budget - spent, 0);
+        const savingsRate = ((remaining / state.budget) * 100).toFixed(1);
+
+        budgetTotalEl.textContent = formatter.format(state.budget);
+        budgetSpentEl.textContent = preciseFormatter.format(spent);
+        budgetRemainingEl.textContent = preciseFormatter.format(remaining);
+        savingsRateEl.textContent = `${savingsRate}%`;
+
+        const spentPct = Math.min((spent / state.budget) * 100, 100);
+        const remainingPct = 100 - spentPct;
+        spentProgress.style.width = `${spentPct}%`;
+        remainingProgress.style.width = `${remainingPct}%`;
+      };
+
+      const trendChartCtx = document.getElementById("trend-chart");
+      let trendChart;
+
+      const refreshCharts = () => {
+        const months = ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov"];
+        const novSpend = state.transactions.reduce((sum, tx) => sum + tx.amount, 0);
+        const monthlySpend = months.map((month) => {
+          if (month === "Nov") return novSpend;
+          return Math.floor(Math.random() * 1800) + 400;
+        });
+
+        if (trendChart) {
+          trendChart.destroy();
+        }
+        trendChart = new Chart(trendChartCtx, {
+          type: "line",
+          data: {
+            labels: months,
+            datasets: [
+              {
+                label: "Monthly Spend",
+                data: monthlySpend,
+                borderColor: "#7ad08c",
+                backgroundColor: "rgba(122, 208, 140, 0.2)",
+                fill: true,
+                tension: 0.4
+              }
+            ]
+          },
+          options: {
+            scales: {
+              x: {
+                ticks: { color: "#a6cfa8" },
+                grid: { color: "rgba(255,255,255,0.05)" }
+              },
+              y: {
+                ticks: { color: "#a6cfa8" },
+                grid: { color: "rgba(255,255,255,0.05)" }
+              }
+            },
+            plugins: {
+              legend: { labels: { color: "#d2f5cf" } }
+            }
+          }
+        });
+      };
+
+      budgetInput.value = state.budget;
+
+      document.getElementById("transaction-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const description = document.getElementById("description").value.trim();
+        const category = document.getElementById("category").value;
+        const amount = parseFloat(document.getElementById("amount").value);
+        if (!description || !Number.isFinite(amount) || amount <= 0) {
+          return;
+        }
+
+        const today = new Date();
+        const date = today.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric"
+        });
+
+        state.transactions.unshift({ description, category, amount, date });
+        event.target.reset();
+        renderTransactions();
+        updateBudget();
+        refreshCharts();
+      });
+
+      clearButton.addEventListener("click", () => {
+        state.transactions = [];
+        renderTransactions();
+        updateBudget();
+        refreshCharts();
+      });
+
+      budgetForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const value = parseFloat(budgetInput.value);
+        if (!Number.isFinite(value) || value <= 0) {
+          return;
+        }
+        state.budget = value;
+        updateBudget();
+        refreshCharts();
+      });
+
+      renderTransactions();
+      updateBudget();
+      refreshCharts();
+    </script>
+  </body>
+</html>
+
