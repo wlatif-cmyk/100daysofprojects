@@ -75,3 +75,12 @@ Day 12 — Arduino project generator
 
 
 Day 13 — Servo motor joystick control
+
+
+
+Day 14 — Servo motor joystick control + Remote control using IR sensors
+
+
+
+Day 15 — Budgeting dashboard site 
+
