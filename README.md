@@ -84,3 +84,7 @@ Day 14 — Servo motor joystick control + Remote control using IR sensors
 
 Day 15 — Budgeting dashboard site 
 
+
+
+Day 16 — Servo motor hand recognition control
+
