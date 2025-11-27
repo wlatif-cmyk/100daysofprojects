@@ -3,7 +3,7 @@ import mediapipe as mp
 import serial
 import time
 
-# COM port of your Arduino
+# COM port of Arduino
 arduino = serial.Serial('COM3', 9600, timeout=1)
 time.sleep(2)
 
