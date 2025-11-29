@@ -88,3 +88,11 @@ Day 15 — Budgeting dashboard site
 
 Day 16 — Servo motor hand recognition control
 
+
+
+Day 17 — Servo motor hand recognition control2 - same concept but motor moves when hand open/closes
+
+
+
+Day 18 — Interview prep tool to prioritize/learn proper eye contact 
+
