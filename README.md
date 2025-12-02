@@ -4,6 +4,8 @@
 
 https://www.tiktok.com/@yappingaddiction
 
+https://www.instagram.com/yappingaddiction/
+
 
 
 Welcome to my 100-day challenge!  
