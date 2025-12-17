@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "kdf": {
+    "name": "PBKDF2HMAC-SHA256",
+    "iterations": 390000,
+    "salt": "A3wFcddN0GBSG9PtVD1Hfg=="
+  },
+  "data": "gAAAAABpP8xluidVW2ywu_RHa8EkW8Wv-dMMhghHsz1waDFqkGdemqqK5WKL4W_M3M20yAsbWhF1jhdLy9yWrF7bMtdxPkkXsg=="
+}
