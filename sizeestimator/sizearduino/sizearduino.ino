@@ -2,6 +2,7 @@
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>
+#include <BLE2902.h>
 
 // ----------------- Your pins (unchanged) -----------------
 #define VRX_PIN 32
@@ -36,7 +37,7 @@ Servo lockServo;
 const char* BLE_NAME = "ESP32_DOORLOCK";
 const String BLE_PIN = "1234"; // CHANGE THIS!
 
-// Random UUIDs (keep these as-is unless you want custom)
+// UUIDs
 #define SERVICE_UUID        "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
 #define CMD_CHAR_UUID       "6e400002-b5a3-f393-e0a9-e50e24dcca9e" // write commands
 #define RESP_CHAR_UUID      "6e400003-b5a3-f393-e0a9-e50e24dcca9e" // notify responses
@@ -52,7 +53,6 @@ void sendResp(const String& msg) {
   }
 }
 
-// BLE server callbacks
 class MyServerCallbacks : public BLEServerCallbacks {
   void onConnect(BLEServer* pServer) override {
     deviceConnected = true;
@@ -61,19 +61,16 @@ class MyServerCallbacks : public BLEServerCallbacks {
   void onDisconnect(BLEServer* pServer) override {
     deviceConnected = false;
     Serial.println("BLE disconnected");
-    // keep advertising so iPhone can reconnect
     BLEDevice::startAdvertising();
   }
 };
 
-// BLE characteristic write callback (commands from iPhone)
 class CmdCallbacks : public BLECharacteristicCallbacks {
   void onWrite(BLECharacteristic* pCharacteristic) override {
-    std::string v = pCharacteristic->getValue();
-    if (v.empty()) return;
-
-    String cmd = String(v.c_str());
+    // FIX: getValue() is String on your setup
+    String cmd = pCharacteristic->getValue();
     cmd.trim();
+    if (cmd.length() == 0) return;
 
     Serial.print("BLE cmd: ");
     Serial.println(cmd);
@@ -92,6 +89,7 @@ class CmdCallbacks : public BLECharacteristicCallbacks {
     if (cmd.startsWith("UNLOCK ")) {
       String pin = cmd.substring(7);
       pin.trim();
+
       if (pin == BLE_PIN) {
         sendResp("OK: unlocked");
         Serial.println("UNLOCKED (BLE)");
@@ -114,19 +112,17 @@ void setupBLE() {
 
   BLEService* service = server->createService(SERVICE_UUID);
 
-  // Command characteristic (Write)
   BLECharacteristic* cmdChar = service->createCharacteristic(
     CMD_CHAR_UUID,
     BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_WRITE_NR
   );
   cmdChar->setCallbacks(new CmdCallbacks());
 
-  // Response characteristic (Notify)
   respChar = service->createCharacteristic(
     RESP_CHAR_UUID,
     BLECharacteristic::PROPERTY_NOTIFY
   );
-  respChar->addDescriptor(new BLE2902()); // enables notifications in apps
+  respChar->addDescriptor(new BLE2902()); // FIX: needs #include <BLE2902.h>
 
   service->start();
 
@@ -136,7 +132,7 @@ void setupBLE() {
   advertising->start();
 
   Serial.println("BLE advertising as: " + String(BLE_NAME));
-  Serial.println("Use iPhone app (nRF Connect / LightBlue) to write commands.");
+  Serial.println("Use nRF Connect: write 'UNLOCK 1234' to CMD char");
 }
 
 // ----------------- Your original setup (unchanged except BLE start) -----------------
@@ -187,9 +183,8 @@ void loop() {
 
   // Direction move when armed
   if (armed && millis() - lastEvent > COOLDOWN_MS) {
-    // Choose strongest axis (handles diagonals nicely)
     if (abs(dy) > abs(dx)) {
-      // UP/DOWN FLIPPED HERE (same as your working version)
+      // UP/DOWN flipped (same as your working version)
       if (dy > TRIGGER) { registerMove('D'); fired(); }
       else if (dy < -TRIGGER) { registerMove('U'); fired(); }
     } else {
