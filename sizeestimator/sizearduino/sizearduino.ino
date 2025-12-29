@@ -4,7 +4,7 @@
 #include <BLEUtils.h>
 #include <BLE2902.h>
 
-// ----------------- Your pins (unchanged) -----------------
+// -----------------  pins -----------------
 #define VRX_PIN 32
 #define VRY_PIN 35
 #define SW_PIN  25
@@ -67,7 +67,6 @@ class MyServerCallbacks : public BLEServerCallbacks {
 
 class CmdCallbacks : public BLECharacteristicCallbacks {
   void onWrite(BLECharacteristic* pCharacteristic) override {
-    // FIX: getValue() is String on your setup
     String cmd = pCharacteristic->getValue();
     cmd.trim();
     if (cmd.length() == 0) return;
@@ -135,7 +134,6 @@ void setupBLE() {
   Serial.println("Use nRF Connect: write 'UNLOCK 1234' to CMD char");
 }
 
-// ----------------- Your original setup (unchanged except BLE start) -----------------
 void setup() {
   Serial.begin(115200);
   pinMode(SW_PIN, INPUT_PULLUP);
@@ -184,7 +182,6 @@ void loop() {
   // Direction move when armed
   if (armed && millis() - lastEvent > COOLDOWN_MS) {
     if (abs(dy) > abs(dx)) {
-      // UP/DOWN flipped (same as your working version)
       if (dy > TRIGGER) { registerMove('D'); fired(); }
       else if (dy < -TRIGGER) { registerMove('U'); fired(); }
     } else {
@@ -201,7 +198,7 @@ void loop() {
   }
 }
 
-// ----------------- Your original functions (unchanged) -----------------
+
 void fired() {
   lastEvent = millis();
   armed = false;
