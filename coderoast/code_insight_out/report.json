@@ -1,0 +1,77 @@
+{
+  "project_path": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection",
+  "created_at": "2026-01-06T21:50:16",
+  "totals": {
+    "files": 1,
+    "bytes": 3292,
+    "lines": 85,
+    "code_lines": 68,
+    "comment_lines": 4,
+    "blank_lines": 13
+  },
+  "by_ext": {
+    ".py": {
+      "files": 1,
+      "lines": 85,
+      "code_lines": 68,
+      "comment_lines": 4,
+      "bytes": 3292
+    }
+  },
+  "largest_files": [
+    {
+      "name": "mood_chatbot.py",
+      "path": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection\\mood_chatbot.py",
+      "lines": 85,
+      "bytes": 3292
+    }
+  ],
+  "duplicate_blocks": [],
+  "python_functions": [
+    {
+      "name": "get_response",
+      "lineno": 23,
+      "end_lineno": 52,
+      "lines": 30,
+      "approx_complexity": 1,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection\\mood_chatbot.py"
+    },
+    {
+      "name": "chat",
+      "lineno": 54,
+      "end_lineno": 81,
+      "lines": 28,
+      "approx_complexity": 4,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection\\mood_chatbot.py"
+    },
+    {
+      "name": "analyze_mood",
+      "lineno": 8,
+      "end_lineno": 21,
+      "lines": 14,
+      "approx_complexity": 4,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection\\mood_chatbot.py"
+    },
+    {
+      "name": "__init__",
+      "lineno": 5,
+      "end_lineno": 6,
+      "lines": 2,
+      "approx_complexity": 1,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection\\mood_chatbot.py"
+    }
+  ],
+  "score": 90,
+  "insights": [
+    "Documentation coverage is on the low side."
+  ],
+  "tech_summary": [
+    "Scanned 1 files: 85 total lines (68 code, 4 comments).",
+    "Comment-to-code ratio: 5.88%. Average file size: 85.0 lines.",
+    "Largest file: mood_chatbot.py at 85 lines.",
+    "Python functions analyzed: 4 (max func length: 30, max complexity: 4)."
+  ],
+  "next_actions": [
+    "Add concise docstrings for key functions and clarify any tricky logic branches."
+  ]
+}
