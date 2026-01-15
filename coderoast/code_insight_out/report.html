@@ -18,38 +18,43 @@
 <body>
   <h1>📌 Codebase Insight Report</h1>
   <div class="muted">
-    Project: <code>C:\Users\Walid Latif\Documents\100daysofprojects\chatbotmooddetection</code><br/>
-    Generated: 2026-01-06T21:50:16
+    Project: <code>C:\Users\Walid Latif\Documents\100daysofprojects\coderoast</code><br/>
+    Generated: 2026-01-08T10:57:06
   </div>
 
   <div class="card">
-    <div class="score">Score: 90/100</div>
+    <div class="score">Score: 64/100</div>
     <h3>Insights</h3>
-    <ul><li>Documentation coverage is on the low side.</li></ul>
+    <ul><li>Documentation coverage looks low (very low comment-to-code ratio).</li>
+<li>Average file size is high, which often correlates with mixed responsibilities per file.</li>
+<li>There are multiple long functions (60+ lines), which can reduce readability and testability.</li></ul>
   </div>
 
   <div class="card">
     <h3>Next Actions</h3>
-    <ul><li>Add concise docstrings for key functions and clarify any tricky logic branches.</li></ul>
+    <ul><li>Add docstrings to public functions and a short header comment for non-obvious modules.</li>
+<li>Enforce a soft file-size cap (200–300 lines) and modularize by feature.</li>
+<li>Refactor long functions into smaller helpers with single responsibilities and clearer naming.</li>
+<li>Quick win: run a formatter (black/prettier) + add a linter (ruff/eslint) and fix top warnings.</li></ul>
   </div>
 
   <div class="card">
     <h3>Technical Summary</h3>
-    <ul><li>Scanned 1 files: 85 total lines (68 code, 4 comments).</li>
-<li>Comment-to-code ratio: 5.88%. Average file size: 85.0 lines.</li>
-<li>Largest file: mood_chatbot.py at 85 lines.</li>
-<li>Python functions analyzed: 4 (max func length: 30, max complexity: 4).</li></ul>
+    <ul><li>Scanned 3 files: 845 total lines (761 code, 1 comments).</li>
+<li>Comment-to-code ratio: 0.13%. Average file size: 281.7 lines.</li>
+<li>Largest file: coderoast.py at 569 lines.</li>
+<li>Python functions analyzed: 14 (max func length: 130, max complexity: 28).</li></ul>
   </div>
 
   <div class="card">
     <h3>Totals</h3>
     <ul>
-      <li>Files: 1</li>
-      <li>Total lines: 85</li>
-      <li>Code lines: 68</li>
-      <li>Comment lines: 4</li>
-      <li>Blank lines: 13</li>
-      <li>Total size: 3KB</li>
+      <li>Files: 3</li>
+      <li>Total lines: 845</li>
+      <li>Code lines: 761</li>
+      <li>Comment lines: 1</li>
+      <li>Blank lines: 83</li>
+      <li>Total size: 29KB</li>
     </ul>
   </div>
 
@@ -58,7 +63,9 @@
     <table>
       <thead><tr><th>Ext</th><th>Files</th><th>Lines</th><th>Code</th><th>Comments</th></tr></thead>
       <tbody>
-        <tr><td>.py</td><td>1</td><td>85</td><td>68</td><td>4</td></tr>
+        <tr><td>.py</td><td>1</td><td>569</td><td>493</td><td>1</td></tr>
+<tr><td>.json</td><td>1</td><td>165</td><td>165</td><td>0</td></tr>
+<tr><td>.html</td><td>1</td><td>111</td><td>103</td><td>0</td></tr>
       </tbody>
     </table>
   </div>
@@ -68,7 +75,9 @@
     <table>
       <thead><tr><th>File</th><th>Lines</th><th>Size</th></tr></thead>
       <tbody>
-        <tr><td>mood_chatbot.py</td><td>85</td><td>3KB</td></tr>
+        <tr><td>coderoast.py</td><td>569</td><td>20KB</td></tr>
+<tr><td>report.json</td><td>165</td><td>4KB</td></tr>
+<tr><td>report.html</td><td>111</td><td>4KB</td></tr>
       </tbody>
     </table>
   </div>
@@ -78,10 +87,20 @@
     <table>
       <thead><tr><th>Function</th><th>Lines</th><th>Complexity</th><th>File</th><th>Range</th></tr></thead>
       <tbody>
-        <tr><td>get_response</td><td>30</td><td>1</td><td>mood_chatbot.py</td><td>23-52</td></tr>
-<tr><td>chat</td><td>28</td><td>4</td><td>mood_chatbot.py</td><td>54-81</td></tr>
-<tr><td>analyze_mood</td><td>14</td><td>4</td><td>mood_chatbot.py</td><td>8-21</td></tr>
-<tr><td>__init__</td><td>2</td><td>1</td><td>mood_chatbot.py</td><td>5-6</td></tr>
+        <tr><td>render_html</td><td>130</td><td>5</td><td>coderoast.py</td><td>367-496</td></tr>
+<tr><td>score_and_insights</td><td>100</td><td>28</td><td>coderoast.py</td><td>266-365</td></tr>
+<tr><td>main</td><td>69</td><td>5</td><td>coderoast.py</td><td>498-566</td></tr>
+<tr><td>analyze_files</td><td>39</td><td>9</td><td>coderoast.py</td><td>148-186</td></tr>
+<tr><td>find_duplicate_blocks</td><td>29</td><td>9</td><td>coderoast.py</td><td>188-216</td></tr>
+<tr><td>analyze_python_functions</td><td>28</td><td>8</td><td>coderoast.py</td><td>218-245</td></tr>
+<tr><td>build_metrics</td><td>18</td><td>2</td><td>coderoast.py</td><td>247-264</td></tr>
+<tr><td>collect_files</td><td>11</td><td>7</td><td>coderoast.py</td><td>136-146</td></tr>
+<tr><td>safe_read_text</td><td>11</td><td>6</td><td>coderoast.py</td><td>106-116</td></tr>
+<tr><td>approx_complexity_from_ast</td><td>10</td><td>3</td><td>coderoast.py</td><td>125-134</td></tr>
+<tr><td>is_probably_binary</td><td>9</td><td>5</td><td>coderoast.py</td><td>96-104</td></tr>
+<tr><td>fmt_bytes</td><td>6</td><td>3</td><td>coderoast.py</td><td>372-377</td></tr>
+<tr><td>normalize_for_dupe</td><td>6</td><td>1</td><td>coderoast.py</td><td>118-123</td></tr>
+<tr><td>li</td><td>2</td><td>1</td><td>coderoast.py</td><td>379-380</td></tr>
       </tbody>
     </table>
   </div>

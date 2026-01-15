@@ -1,77 +1,188 @@
 {
-  "project_path": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection",
-  "created_at": "2026-01-06T21:50:16",
+  "project_path": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast",
+  "created_at": "2026-01-08T10:57:06",
   "totals": {
-    "files": 1,
-    "bytes": 3292,
-    "lines": 85,
-    "code_lines": 68,
-    "comment_lines": 4,
-    "blank_lines": 13
+    "files": 3,
+    "bytes": 29201,
+    "lines": 845,
+    "code_lines": 761,
+    "comment_lines": 1,
+    "blank_lines": 83
   },
   "by_ext": {
     ".py": {
       "files": 1,
-      "lines": 85,
-      "code_lines": 68,
-      "comment_lines": 4,
-      "bytes": 3292
+      "lines": 569,
+      "code_lines": 493,
+      "comment_lines": 1,
+      "bytes": 20289
+    },
+    ".html": {
+      "files": 1,
+      "lines": 111,
+      "code_lines": 103,
+      "comment_lines": 0,
+      "bytes": 4362
+    },
+    ".json": {
+      "files": 1,
+      "lines": 165,
+      "code_lines": 165,
+      "comment_lines": 0,
+      "bytes": 4550
     }
   },
   "largest_files": [
     {
-      "name": "mood_chatbot.py",
-      "path": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection\\mood_chatbot.py",
-      "lines": 85,
-      "bytes": 3292
+      "name": "coderoast.py",
+      "path": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py",
+      "lines": 569,
+      "bytes": 20289
+    },
+    {
+      "name": "report.json",
+      "path": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\code_insight_out\\report.json",
+      "lines": 165,
+      "bytes": 4550
+    },
+    {
+      "name": "report.html",
+      "path": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\code_insight_out\\report.html",
+      "lines": 111,
+      "bytes": 4362
     }
   ],
   "duplicate_blocks": [],
   "python_functions": [
     {
-      "name": "get_response",
-      "lineno": 23,
-      "end_lineno": 52,
-      "lines": 30,
-      "approx_complexity": 1,
-      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection\\mood_chatbot.py"
+      "name": "render_html",
+      "lineno": 367,
+      "end_lineno": 496,
+      "lines": 130,
+      "approx_complexity": 5,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
     },
     {
-      "name": "chat",
-      "lineno": 54,
-      "end_lineno": 81,
+      "name": "score_and_insights",
+      "lineno": 266,
+      "end_lineno": 365,
+      "lines": 100,
+      "approx_complexity": 28,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
+    },
+    {
+      "name": "main",
+      "lineno": 498,
+      "end_lineno": 566,
+      "lines": 69,
+      "approx_complexity": 5,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
+    },
+    {
+      "name": "analyze_files",
+      "lineno": 148,
+      "end_lineno": 186,
+      "lines": 39,
+      "approx_complexity": 9,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
+    },
+    {
+      "name": "find_duplicate_blocks",
+      "lineno": 188,
+      "end_lineno": 216,
+      "lines": 29,
+      "approx_complexity": 9,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
+    },
+    {
+      "name": "analyze_python_functions",
+      "lineno": 218,
+      "end_lineno": 245,
       "lines": 28,
-      "approx_complexity": 4,
-      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection\\mood_chatbot.py"
+      "approx_complexity": 8,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
     },
     {
-      "name": "analyze_mood",
-      "lineno": 8,
-      "end_lineno": 21,
-      "lines": 14,
-      "approx_complexity": 4,
-      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection\\mood_chatbot.py"
+      "name": "build_metrics",
+      "lineno": 247,
+      "end_lineno": 264,
+      "lines": 18,
+      "approx_complexity": 2,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
     },
     {
-      "name": "__init__",
-      "lineno": 5,
-      "end_lineno": 6,
+      "name": "collect_files",
+      "lineno": 136,
+      "end_lineno": 146,
+      "lines": 11,
+      "approx_complexity": 7,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
+    },
+    {
+      "name": "safe_read_text",
+      "lineno": 106,
+      "end_lineno": 116,
+      "lines": 11,
+      "approx_complexity": 6,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
+    },
+    {
+      "name": "approx_complexity_from_ast",
+      "lineno": 125,
+      "end_lineno": 134,
+      "lines": 10,
+      "approx_complexity": 3,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
+    },
+    {
+      "name": "is_probably_binary",
+      "lineno": 96,
+      "end_lineno": 104,
+      "lines": 9,
+      "approx_complexity": 5,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
+    },
+    {
+      "name": "fmt_bytes",
+      "lineno": 372,
+      "end_lineno": 377,
+      "lines": 6,
+      "approx_complexity": 3,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
+    },
+    {
+      "name": "normalize_for_dupe",
+      "lineno": 118,
+      "end_lineno": 123,
+      "lines": 6,
+      "approx_complexity": 1,
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
+    },
+    {
+      "name": "li",
+      "lineno": 379,
+      "end_lineno": 380,
       "lines": 2,
       "approx_complexity": 1,
-      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\chatbotmooddetection\\mood_chatbot.py"
+      "file": "C:\\Users\\Walid Latif\\Documents\\100daysofprojects\\coderoast\\coderoast.py"
     }
   ],
-  "score": 90,
+  "score": 64,
   "insights": [
-    "Documentation coverage is on the low side."
+    "Documentation coverage looks low (very low comment-to-code ratio).",
+    "Average file size is high, which often correlates with mixed responsibilities per file.",
+    "There are multiple long functions (60+ lines), which can reduce readability and testability."
   ],
   "tech_summary": [
-    "Scanned 1 files: 85 total lines (68 code, 4 comments).",
-    "Comment-to-code ratio: 5.88%. Average file size: 85.0 lines.",
-    "Largest file: mood_chatbot.py at 85 lines.",
-    "Python functions analyzed: 4 (max func length: 30, max complexity: 4)."
+    "Scanned 3 files: 845 total lines (761 code, 1 comments).",
+    "Comment-to-code ratio: 0.13%. Average file size: 281.7 lines.",
+    "Largest file: coderoast.py at 569 lines.",
+    "Python functions analyzed: 14 (max func length: 130, max complexity: 28)."
   ],
   "next_actions": [
-    "Add concise docstrings for key functions and clarify any tricky logic branches."
+    "Add docstrings to public functions and a short header comment for non-obvious modules.",
+    "Enforce a soft file-size cap (200\u2013300 lines) and modularize by feature.",
+    "Refactor long functions into smaller helpers with single responsibilities and clearer naming.",
+    "Quick win: run a formatter (black/prettier) + add a linter (ruff/eslint) and fix top warnings."
   ]
 }
